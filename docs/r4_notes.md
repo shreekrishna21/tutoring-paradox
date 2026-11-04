@@ -40,10 +40,9 @@ Referred: 23.9%. Not referred: 9.6%.
 
 `mean` is the share of grades that were failures
 `size` is the number of grade rows 
-`referred` shows whether the student was referred in the subject or not 
-
-Prior gpa because it comes from the year before the program started, so tutoring can't have influenced it. If those students were already struggling, comparing everyone at once could mix up the effect of tutoring with where students started academically. 
-
+`referred` shows whether the student was referred in the subject or not
+ 
+We use prior GPA because it comes from 2024-25, before this year's referrals. If referred students were already struggling, comparing everyone at once could mix up the effect of tutoring with where students started.
 
 ```text
                             mean    size
@@ -91,9 +90,10 @@ lower by term 3.
 
 ## 4) Attendance 
 Cleaning the session log: 
- * Removed extra space from subject labels: so pairs went from 25,883 to 14, 917
- * Removed 2,480 exact copies 
- 
+ * Removed extra space from subject labels: pairs went from 25,883 to 14,917.
+ * Removed 2,480 exact copies: rows went from 415,850 to 413,370.
+ * 42 rows have odd `minutes` values (8 Present with 0, plus 450, 455 and 4500). Rates use `attendance`, not `minutes`.
+
  ### How attendance was calculated 
  Script: `attendance.py`. Data: `tutoring_sessions.csv.gz` and `students.csv`
 
@@ -144,3 +144,4 @@ Higher attendance went with lower failure. This is a pattern, not proof that att
 
 ## AI use
 Used Claude to help write the analysis scripts and interpret the output.
+
