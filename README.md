@@ -1,7 +1,9 @@
 # tutoring-paradox
 ## Team Members
 Derrilon Young  
-Shree Krishna  
+
+Shree Krishna Shrestha
+
 Emilio El-Zahr
 
 ## Topic
