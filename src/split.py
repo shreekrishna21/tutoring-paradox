@@ -12,6 +12,7 @@ same students for training, validation and testing.
 """
 
 import pandas as pd
+from pathlib import Path
 from sklearn.model_selection import StratifiedGroupKFold
 
 # Fixed settings, so the split is the same every time
@@ -19,7 +20,9 @@ RANDOM_STATE = 42
 N_FOLDS = 5
 TARGET = "failed_t3"
 GROUP = "student_id"
-FEATURES_PATH = "../data/features.csv"
+
+# Path to features.csv, worked out from where this file is, so it works from any folder
+FEATURES_PATH = Path(__file__).resolve().parent.parent / "data" / "features.csv"
 
 
 def load_features(path=FEATURES_PATH):
