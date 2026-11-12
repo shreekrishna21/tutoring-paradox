@@ -31,9 +31,10 @@ referred (Simpson's paradox), and whether attending more sessions helps.
 | `data/features.csv` | The feature table used by all M2 notebooks |
 | `src/split.py` | Shared split: 20% of students held out as the test set; 5-fold cross-validation grouped by student on the rest (seed 42) |
 | `notebooks/03_experiments.ipynb` | R6: tests H1 and H2 with group comparisons and 95% Wilson confidence intervals |
-| `notebooks/04_models.ipynb` | R7: naive Bayes models M0–M4, every run logged in MLflow <!-- TODO: check the file name when Derrilon is done --> |
-| `results/mlflow_runs.csv` | R7: exported MLflow run table <!-- TODO --> |
-| `notebooks/05_validation.ipynb` | R8: model comparison, test set used once, final verdicts <!-- TODO --> |
+| `notebooks/04_models.ipynb` | R7: naive Bayes models M0–M5, every run logged in MLflow (course server) |
+| `results/mlflow_runs.csv` | R7: exported MLflow run table (6 runs: features, reason, CV AUC ± SD, Brier, train/CV gap) |
+| `notebooks/05_validation.ipynb` | R8: model choice, test set scored once, probability check, final verdicts |
+| `results/test_result.csv` | R8: test set result for the chosen model (M2) |
 
 ## How to Run
 1. Download the raw CSV files from the course repository
@@ -44,10 +45,10 @@ referred (Simpson's paradox), and whether attending more sessions helps.
    2. `Exploration.ipynb`
    3. `02_features.ipynb` (saves `data/features.csv`)
    4. `03_experiments.ipynb`
-   5. `04_models.ipynb` (needs `mlflow`; see the notebook for the tracking server setting)
+      5. `04_models.ipynb` (needs `mlflow`; logs to the course server at http://10.0.100.20:5000, reachable from the lab network)
    6. `05_validation.ipynb`
 
-## M2 Results (so far)
+## M2 Results
 - **H1: Supported.** Overall, referred students failed more in term 3 (19.6% vs. 8.9%).
   But inside every group of students with the same prior GPA and term 1 result
   (7 groups), referred students failed **less**. This is Simpson's paradox: students
@@ -57,7 +58,13 @@ referred (Simpson's paradox), and whether attending more sessions helps.
   attendance group failed much less than the lowest (Q1: 44.3% → 18.7%). Strong
   students almost never failed, so attendance could not make a measurable difference.
 - **Extra:** bus riders attended about 6–9 points fewer sessions in every GPA group.
-- **Models and final verdict:** <!-- TODO: fill in after R7 and R8 -->
+- **Models (R7):** prior GPA is what predicts failure (CV AUC 0.785 → 0.874). Adding
+  referral or attendance after GPA makes naive Bayes slightly worse, because they mostly
+  repeat what GPA already says.
+- **Validation (R8):** we chose M2 (best CV AUC, lead 6× the SD). On the test set it
+  scored AUC 0.871 (CV 0.874), so CV was trustworthy. Its probabilities are too extreme
+  (Brier 0.109 vs. baseline 0.088), but the top 20% highest-risk rows catch 68% of failures.
+- **Final verdicts:** H1 **supported**, H2 **revised**.
 
 ## AI Use
 ### Milestone 1
@@ -73,8 +80,12 @@ referred (Simpson's paradox), and whether attending more sessions helps.
   information was included. Claude helped write the code and notebook text.
 - **R6 (Experiments):** We followed the tests planned in R5 and decided on the verdicts
   (H1 supported, H2 revised). Claude helped write the code.
-- **R7 (Models):** <!-- TODO -->
-- **R8 (Validation):** <!-- TODO -->
+- **R7 (Models):** We designed and ran the five planned naive Bayes models
+  (M0–M4) plus an extra model (M5) to test why attendance lowered the score. We logged
+  every run to the course MLflow server and wrote the results.
+  AI helped write and explain parts of the code.
+- **R8 (Validation):** We set the rule for choosing the model, chose M2, and checked the
+  test result. Claude helped write the code.
 
 
 
