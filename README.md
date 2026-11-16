@@ -36,11 +36,11 @@ On our test set it was 68%. **If it falls below 60%, review the model.**
 ## The chosen model in MLflow
 - Model: M2 (GaussianNB pipeline with median fill for missing prior GPA), saved by `notebooks/07_save_model.ipynb`
 - MLflow server: http://10.0.100.20:5000 (lab network), experiment `tutoring-paradox-r7`, run `M2_final_model`
-- **Run id: `<RUN_ID>`** (also in `results/model_run_id.txt`)
+- **Run id: `6f90acd9ca49441aab6266696cdd3a19`** (also in `results/model_run_id.txt`)
 - Load it with:
   ```python
   import mlflow.sklearn
-  model = mlflow.sklearn.load_model("runs:/<RUN_ID>/model")
+  model = mlflow.sklearn.load_model("runs:/6f90acd9ca49441aab6266696cdd3a19/model")
   model.predict_proba(X)   # X = the 10 feature columns, prepared as in 07_save_model
   ```
 
