@@ -150,3 +150,11 @@ run each with **Restart → Run All**:
 - **README:** Claude helped organize the reproduction steps and the number-to-source table.
 
 All content was reviewed by the team and can be explained and reproduced by us.
+
+**Version note (found during M3):** `04_models` and `07_save_model` ran on the lab machine
+with scikit-learn **1.9.1**, while `02_features`, `05_validation` and `06_figures` ran on a
+laptop with scikit-learn **1.3.0**. The two versions put different students in the test set,
+so the R8 test set is not exactly the set held out during R7. We checked this by repeating
+R8 with scikit-learn 1.9.1: test AUC 0.871 (same), Brier 0.113 (vs. 0.109), and the top 20%
+of predicted risk still holds 67% of failures (vs. 68%). The model choice and all conclusions
+are unchanged. Future work: one scikit-learn version for every machine.
