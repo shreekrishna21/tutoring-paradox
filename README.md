@@ -75,6 +75,7 @@ run each with **Restart → Run All**:
 | Slide | Number | Source |
 |---|---|---|
 | The problem | 19.6% vs. 8.9% failed | `03_experiments`, Step 3 (overall rates) |
+| The problem | 26% vs. 10% failed term 1 (referred students were already struggling) | `03_experiments`, after Step 3 |
 | Our data | 120,000 rows, 10.2% failed, 95,991 / 24,009 split | `02_features`, Steps 7–8 |
 | H1 | 7 groups, referred fail less in all 7 | `03_experiments`, Step 3; chart `06_figures`, Step 2 |
 | H2 | 2 of 5 groups; Q1 44.3% → 18.7% | `03_experiments`, Step 4 and extra check; chart `06_figures`, Step 3 |
